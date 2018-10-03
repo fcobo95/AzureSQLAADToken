@@ -1,10 +1,10 @@
-$tenantName   = "d6f0816a-f175-48fd-be30-413b517504f8"
-$clientId     = "ed011b6f-5224-4efa-a3c5-c59fd9c262d8"
+$tenantName   = "{TENANT ID}"
+$applicationId     = "{APPLICATION ID}"
 $redirectUri  = "http://localhost/"                                
 $resourceUri  = "https://database.windows.net/"                
 $authorityUri = "https://login.microsoftonline.com/$tenantName"
-$sqlServerUrl = "fcobo.database.windows.net"
-$database = "fcobo"
+$sqlServerUrl = "{SERVERNAME}.database.windows.net"
+$database = "{DATABASENAME}"
 $tablename = "PSAADTokenBasedTable"
 function GetAuthToken{
      
@@ -23,7 +23,7 @@ function GetAuthToken{
      [System.Reflection.Assembly]::LoadFrom($adalForms32) | Out-Null#>
      
      $authContext = New-Object "Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext" -ArgumentList $authorityUri
-     $authToken = $authContext.AcquireToken($resourceUri, $clientId, $redirectUri, "Always")
+     $authToken = $authContext.AcquireToken($resourceUri, $applicationId, $redirectUri, "Always")
           
      return $authToken.AccessToken
 }
